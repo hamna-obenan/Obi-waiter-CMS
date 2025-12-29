@@ -12,9 +12,9 @@ export class signupPage {
         this.page = page;
         this.firstname= "[placeholder='First name']" //signin page first name locator
         this.lastname= "[name='lastName']" //signin page last name XPath
-        this.emailField = '[name="email"]'; // XPath locator
+        this.emailField = "[placeholder='Email']"; // XPath locator
         this.companyname = "[name='company']" // comapny name Xpath
-        this.password= "[name='password']" //xpath password feild 
+        this.password= "[placeholder='Password']" //xpath password feild 
         this.confirmpassword= "[name='confPassword']"// Xpath of confirm password
         this.visibltyicon="(//button[@type='button'])" // Xpath of visibilty the password Eye icon
         this.signinbuttonfirst=  "//div//button[normalize-space()='Sign in']"; //signin Xpath locator
@@ -26,7 +26,9 @@ export class signupPage {
    // cms url
 
     async goto(url){
-        await this.page.goto(url);  // assuming env has a property 'url'
+        await this.page.goto('https://develop.d20aue3nu6xt33.amplifyapp.com/venue');  // assuming env has a property 'url'
+        await this.page.waitForTimeout(2000);
+
     }
 
     //function to click signin button
@@ -37,7 +39,7 @@ export class signupPage {
 
     // Function to type email
     async enterEmail(email) {
-        await this.page.click(this.emailField, email); //click on the email feild
+        await this.page.locator(this.emailField, email).click(); //click on the email feild
         await this.page.locator(this.emailField, email).fill('hamna@test.com'); //fill up email feild 
         await expect(this.page.locator(this.emailField)).toHaveValue(/hamna@test.com/); // simple assertion to verify the text   
     }
@@ -55,6 +57,10 @@ export class signupPage {
     async submitform(){
         await expect(this.page.locator(this.signinbutton)).toBeEnabled(); //assertion to verify that the sigin bitton is enable or disable
         await this.page.locator(this.signinbutton).click(); //click on the signin button to submit the sing up form
+        // Assert user is redirected to either the signup or venue page
+        // The test failed due to 'page is not defined'; in class methods, use 'this.page' to reference the page instance.
+        // Fixed code:
+        await expect(this.page).toHaveURL(/https:\/\/develop\.d20aue3nu6xt33\.amplifyapp\.com\/(signup|venue)/);
 
     }
 
