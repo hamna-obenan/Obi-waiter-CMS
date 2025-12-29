@@ -1,0 +1,16 @@
+{
+    "signin-button-first": "//button[normalize-space()='Sign in']",
+    "First name": "[name='firstName']",
+    "Last name": "[name='lastName']",
+    "Email": "[name='email']",
+    "Company name": "[name='company']",
+    "Password": "[name='password']",
+    "Confirm password": "[name='confPassword']",
+    "signup-button": "[type='submit']",
+    "signin-email": "[name='username']",
+    "signin-password": "[name='password']",
+    "signin-button": "[type='submit']",
+    "signin-error": "//p[normalize-space(.)='user.USER_NOT_FOUND']",
+    "signin-error-wrong-credentials": "//p[normalize-space(.)='auth.WRONG_CREDENTIALS']",
+    "signup-duplicate-company-text": "company.COMPANY_ALREADY_EXIST"
+}
