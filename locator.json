@@ -1,0 +1,261 @@
+{
+   
+    "First name": "[name='firstName']",
+    "Last name": "[name='lastName']",
+    "Email": "[name='email']",
+    "Company name": "[name='company']",
+    "Password": "[name='password']",
+    "Confirm password": "[name='confPassword']",
+    "signup-button": "[type='submit']",
+    "signin-email": "[name='username']",
+    "signin-password": "[name='password']",
+    "signin-button": "[type='submit']",
+    "signin-error": "//p[normalize-space(.)='user.USER_NOT_FOUND']",
+    "signin-error-wrong-credentials": "//p[normalize-space(.)='auth.WRONG_CREDENTIALS']",
+    "signup-duplicate-company-text": "company.COMPANY_ALREADY_EXIST",
+
+
+
+    "click-add-venue-button": "//*[@data-testid='AddSharpIcon']/following-sibling::p[normalize-space()='Add']",
+    "venue-name": "[placeholder='Venue name']",
+    "venue-name-translation":"//div[@class='MuiGrid-root MuiGrid-item MuiGrid-grid-mobile-12 MuiGrid-grid-tablet-6 MuiGrid-grid-laptop-4 MuiGrid-grid-desktop-4 css-exke7g']//div[@class='MuiBox-root css-4g6ai3']//*[name()='svg']//*[name()='path' and contains(@d,'M10.0307 1')]",
+    "venue-name-translate-dutch":"//div[@class='MuiStack-root css-z7ske7']//div[2]",
+    "venue-name-autotranslate": "//button[normalize-space()='Auto Translate']",
+    "venue-name-translate-german":"//span[normalize-space()='German']",
+    "venue-name-autotransalte-button": "//button[normalize-space()='Auto Translate']",
+    "venue-name-apply-button": "//button[normalize-space()='Apply']",
+    "venue-type": "[placeholder='Venue type']",
+    "venue-email": "[placeholder='Email ']",
+    "venue-default-language":"[placeholder='Venue default language']",
+    "venue-Time zone": "[placeholder='Time zone ']",
+    "venue-Currency": "[placeholder='Currency ']",
+    "venue-Cuisine": "[placeholder='Cuisine ']",
+    "venue-Address": "[placeholder='Address ']",
+    "venue-next-button": "//button[@tabindex='0'][@type='button'][text()='Next'][contains(@class, 'MuiButton')]",
+    "venue-description": "[name='description.en']",
+    "Instagram address (optional)": "[name='instagram']",
+    "Facebook (optional)": "[name='facebook']",
+    "Client app url": "[name='slug']",
+    "Enable Pay Later ": "[type='checkbox']",
+    "Enable Tipping": "[type='checkbox']",
+    "Tip Percentage (%)": "[name='defaultTipPercentage']",
+    "Dine-In Tax (%)": "[name='dineInTax']",
+    "Take-Away Tax (%)": "[name='takeawayTax']",
+    "venuelogo": "getByText('Choose image').first().click()",
+    "venuelogoimageselector": "getByRole('group', { name: 'Use the arrow keys to move' })",
+    "logouploadbutton": "[type='submit']",
+    "clickonthelogopicture": "getByRole('img', { name: 'Upload image*' })",
+    "venueCoverimage": "getByText('Choose image').nth(1).click()",
+    "venueCoverimageimageselector": "//div[@class='ReactCrop__crop-selection'][@role='group']",
+    "venueCoverimageuploadbutton": "[type='submit']",
+    "venue-contact-number": "[name='contactNumber']",
+    "select-venue-start-time-monday": "//p[contains(text(),'Monday')]/following-sibling::div//*[@placeholder='Open Time']",
+    "select-venue-close-time-monday": "//p[contains(text(),'Monday')]/following-sibling::div//*[@placeholder='Close Time']",
+    "select-venue-start-time-tuesday": "//p[contains(text(),'Tuesday')]/following-sibling::div//*[@placeholder='Open Time']",
+    "select-venue-close-time-tuesday": "//p[contains(text(),'Tuesday')]/following-sibling::div//*[@placeholder='Close Time']",
+    "select-venue-start-time-wednesday": "//p[contains(text(),'Wednesday')]/following-sibling::div//*[@placeholder='Open Time']",
+    "select-venue-close-time-wednesday": "//p[contains(text(),'Wednesday')]/following-sibling::div//*[@placeholder='Close Time']",
+    "select-venue-start-time-thursday": "//p[contains(text(),'Thursday')]/following-sibling::div//*[@placeholder='Open Time']",
+    "select-venue-close-time-thursday": "//p[contains(text(),'Thursday')]/following-sibling::div//*[@placeholder='Close Time']",
+    "select-venue-start-time-friday": "//p[contains(text(),'Friday')]/following-sibling::div//*[@placeholder='Open Time']",
+    "select-venue-close-time-friday": "//p[contains(text(),'Friday')]/following-sibling::div//*[@placeholder='Close Time']",
+    "select-venue-start-time-saturday": "//p[contains(text(),'Saturday')]/following-sibling::div//*[@placeholder='Open Time']",
+    "select-venue-close-time-saturday": "//p[contains(text(),'Saturday')]/following-sibling::div//*[@placeholder='Close Time']",
+    "select-venue-start-time-sunday": "//p[contains(text(),'Sunday')]/following-sibling::div//*[@placeholder='Open Time']",
+    "select-venue-close-time-sunday": "//p[contains(text(),'Sunday')]/following-sibling::div//*[@placeholder='Close Time']",
+    "Story Title": "[placeholder='Story Title']",
+    "Story Description": "[data-slate-node='element']",
+    "Story Image": "//div[.//*[@data-testid='AddPhotoAlternateOutlinedIcon'] and .//p[normalize-space()='Choose image']",
+    "add-galary-items-button":"//button[@type='button' and normalize-space(text())='Add Gallery Item']",
+    "add-galary-items-1":"//input[@name='gallery.0.title.en' and @placeholder='Gallery Title']",
+    "gallary-item-description-1":"//textarea[@name='gallery.0.description.en' and @placeholder='Gallery Description']",
+    "gallary-item-image-1":"//div[.//*[@data-testid='AddPhotoAlternateOutlinedIcon'] and .//p[normalize-space()='Choose image']]",
+    "add-galary-items-2":"//input[@name='gallery.1.title.en' and @placeholder='Gallery Title']",
+    "gallary-item-description-2":"//textarea[@name='gallery.1.description.en' and @placeholder='Gallery Description']",
+    "gallary-item-image-2":"//div[.//*[@data-testid='AddPhotoAlternateOutlinedIcon'] and .//p[normalize-space()='Choose image']]",
+    "add-galary-items-3":"//input[@name='gallery.2.title.en' and @placeholder='Gallery Title']",
+    "gallary-item-description-3":"//textarea[@name='gallery.2.description.en' and @placeholder='Gallery Description']",
+    "save-button":"//button[text()='Save']",
+    "crop-handle":"getByRole('group', { name: 'Use the arrow keys to move' })",
+    "venue-add-button2":"//*[@data-testid='AddSharpIcon']/following-sibling::p[normalize-space()='Add']",
+    "venue-duplicate-alert":"//div[@role='alert']//*[normalize-space()='Venue already exist']",
+
+
+    "click-on-the-created-venue":"[class='MuiBox-root css-11pa1kn']",
+    "click-on-the-add-menu":"[data-testid='AddSharpIcon']",
+    "create-button":"//button[normalize-space()='Create']",
+    "import-button":"//button[normalize-space()='Import']",
+    "venue-button":"//button[normalize-space()='Venue']",
+    "company-button":"//button[normalize-space()='Company']",
+    "click-on-the-menu-name":"[type='text']",
+    "inner-picture-box":"[id='fileInput']",
+    "upload-button":"[type='submit']",
+    "cancel-button":"[type ='submit']",
+    "translate-button":"[fill='black']",
+    "duplicate-menu-alert":"//div[@role='alert']//*[normalize-space()='Master menu already exist']",
+    "duplicate-menu-alert-venue":"//div[@role='alert']//*[normalize-space()='Menu already exist in this venue']",
+
+    "created-menu":"//img[@alt='logo']",
+    "add-category-button":"//button[normalize-space(.)='New Category']",
+    "category-name":"[name='categoryname.en']",
+    "select-menu-dropdown":"[placeholder='Select menu']",
+    "select-menu-dropdown-category":"[placeholder='Select menus']",
+
+
+
+    "Item-tab":"[href='/items']",
+    "created-category-select":"//*[text()[normalize-space()='name']]",
+    "add-item-button":"//button[normalize-space(.)='New Item']",
+    "item-name":"[name='name.en']",
+    "instock-dropdown":"[placeholder='Select status']",
+    "select-category-dropdown":"[placeholder='Select categories']",
+    "description-box-item":"[class='editable']",
+    "price-dropdown":"//div[@role='combobox' and @id='mui-component-select-prices.0.variants' and contains(@class,'MuiSelect-outlined')]",
+    "price-dropdown-2":"//div[@role='combobox' and contains(@id, 'mui-component-select-prices')]",
+    "price-dropdown-3":"//div[@role='combobox' and contains(@id, 'mui-component-select-prices')]",
+    "price-dropdown-4":"//div[@role='combobox' and contains(@id, 'mui-component-select-prices')]",
+    "pricedefault":"[data-value='custom']",
+    "add-extra":"//button[@type='button' and normalize-space(text())='Add Extras']",
+    "enter-custom-price":"(//input[@type='number' and @placeholder='Enter Custom Price'])[1]",
+    "enter-custom-price-2":"(//input[@type='number' and @placeholder='Enter Custom Price'])[2]",
+    "enter-custom-price-3":"(//input[@type='number' and @placeholder='Enter Custom Price'])[3]",
+    "enter-custom-price-4":"(//input[@type='number' and @placeholder='Enter Custom Price'])[4]",
+    "enter-custom-price-5":"(//input[@type='number' and @placeholder='Enter Custom Price'])[5]",
+    "price-discription":"[placeholder='Description']",
+    "price-discription-2":"[name='prices.1.description.en']",
+    "select-tax-dropdown":"[placeholder='Select tax']",
+    "select-tax-dropdown-2":"(//input[@placeholder='Select tax'])[2]",
+    "select-tax-dropdown-3":"(//input[@placeholder='Select tax'])[3]",
+    "select-tax-dropdown-4":"(//input[@placeholder='Select tax'])[4]",
+    "pricedefaultcheckbox":"[name='prices.0.isDefault']",
+    "picture-placeholder":"//input[@type='checkbox' and @name='isPlaceholderAdded']",
+    "select-cuisine-dropdown":"[placeholder='Select cuisine']",
+    "serve-people":"[placeholder='Select serve people']",
+    "select-ingredients":"[placeholder='Select ingredients']",
+    "item-tag":"[placeholder='Select tags']",
+    "select-customizations":"[placeholder='Select Customizations']",
+    "stock-count":"[placeholder='Enter stock count']",
+    "item-details-genrate-button":"//button[normalize-space(text())='Generate']",
+    "item-create-success-toast":"//div[@role='alert']//*[normalize-space()='item.ITEM_CREATED']",
+
+
+
+
+
+
+
+
+
+    "tag-tab":"[href='/tags']",
+    "create-tag-button":"//button[normalize-space(text())='Create Tag']",
+    "tag-name":"[placeholder='Enter tag name']",
+    "display-name":"name=['shortForm.en']",
+    "tag-1":"//p[contains(text(),'Tag icon *')]/parent::div/div/div[1]/*[@fill='none']",
+    "tag-2":"//p[contains(text(),'Tag icon *')]/parent::div/div/div[2]/*[@fill='none']",
+    "tag-3":"//p[contains(text(),'Tag icon *')]/parent::div/div/div[3]/*[@fill='none']",   
+    "tag-4":"//p[contains(text(),'Tag icon *')]/parent::div/div/div[4]/*[@fill='none']",
+    "tag-5":"//p[contains(text(),'Tag icon *')]/parent::div/div/div[5]/*[@fill='none']",
+    "tag-6":"//p[contains(text(),'Tag icon *')]/parent::div/div/div[6]/*[@fill='none']",
+    "tag-7":"//p[contains(text(),'Tag icon *')]/parent::div/div/div[7]/*[@fill='none']",
+    "tag-8":"//p[contains(text(),'Tag icon *')]/parent::div/div/div[8]/*[@fill='none']",
+    "tag-9":"//p[contains(text(),'Tag icon *')]/parent::div/div/div[9]/*[@fill='none']",
+    "tag-10":"//p[contains(text(),'Tag icon *')]/parent::div/div/div[10]/*[@fill='none']",
+    "tag-11":"//p[contains(text(),'Tag icon *')]/parent::div/div/div[11]/*[@fill='none']",
+
+
+
+
+    "tag-save-button":"[type='button']", 
+
+    "ingredient-tab":"[href='/ingredients']",
+    "add-ingredient-button":"//button[normalize-space(text())='Create Ingredient']",
+    "ingredient-name":"[placeholder='Enter ingredient name']",
+    "ingredient-instock-checkbox":"//input[@type='radio' and @name='inStock' and @value='true']",
+    "ingredient-outstock-checkbox":"//input[@type='radio' and @name='inStock' and @value='false']",
+    "ingredient-allergen-checkbox":"[name='allergen']",
+
+
+
+
+
+    "customization-tab":"[href='/customizations']",
+    "add-customization-button":"//button[normalize-space(text())='Create Customizations']",
+    "customization-name":"[name='name.en']",
+    "is-required-checkbox":"//input[@type='checkbox' and @name='isRequired']",
+    "option-box":"[name='prices.0.description.en']",
+    "option-box1":"[name='prices.1.description.en']",
+    "option-box2":"[name='prices.2.description.en']",
+    "option-box3":"[name='prices.3.description.en']",
+    "option-box4":"[name='prices.4.description.en']",
+    "delete-created-option":"[data-testid='DeleteForeverOutlinedIcon']",
+    "add-more-customization-button":"//button[normalize-space(text())='Add More']",
+
+
+    "ai-genrated-menu-button":"//button[normalize-space()='AI Menu Generate']",
+    "edit-icon": "//*[name()='svg' and @data-testid='ModeEditOutlineOutlinedIcon']",
+
+
+    "table-management-button":"[href='/table-management']",
+    "new-table-button":"//button[@type='button' and normalize-space(text())='New Table']",
+    "foreground-color-QR-code":"[placeholder='Foreground Color']",
+    "background-color-QR-code":"[placeholder='Background Color']",
+    "qr-code-header-text":"[placeholder='e.g., Please Check In']",
+    "qr-code-subtext": "[placeholder='e.g., Scan to see the menu']",
+
+
+    "table-name": "[placeholder='Enter table name']",
+    "table-capacity": "[placeholder='Enter table capacity']",
+    "generate-QR-code-button": "//button[@type='button' and normalize-space(text())='Generate QR Code']",
+
+    "new-deal-button": "//button[@type='button' and normalize-space(text())='Create Deal']",
+    "deal-type-name": "[placeholder='addDeal.selectDealType']",
+    "deal-name":"[placeholder='Enter deal name']",
+    "deal-active-checkbox":"[type='checkbox']",
+    "quantity-and-price":"[type='number']",
+    "start-time":"[name='startTime']",
+    "end-time":"[name='endTime']",
+
+    "combo-deal":"[name='comboPrice']",
+    "select-item-dropdown":"//*[@placeholder='Select Item']/parent::div/div", 
+    "select-price-1":"//*[@role='combobox' and @id='mui-component-select-comboItems.0.variantId']",
+    "select-price-2":"//*[@id='mui-component-select-comboItems.1.variantId']",
+    "add-item-button-combo":"//button[@type='button' and normalize-space(text())='Add Item']",
+    "buy-item1": "//div[@role='combobox' and @id='mui-component-select-buyItems.0.itemId' and @aria-labelledby='mui-component-select-buyItems.0.itemId']",
+    "buy-item2":"//div[@role='combobox' and @id='mui-component-select-getItems.0.itemId' and @aria-labelledby='mui-component-select-getItems.0.itemId']",
+    "select-item-price1": "//div[@role='combobox' and @id='mui-component-select-buyItems.0.variantId' and @aria-labelledby='mui-component-select-buyItems.0.variantId']",
+    "select-item-price2": "//div[@role='combobox' and @id='mui-component-select-getItems.0.variantId' and @aria-labelledby='mui-component-select-getItems.0.variantId']",
+    
+    
+    "Promo-setting": "[href='/promo-settings']",
+    "promo-name": "[placeholder='Enter promo title']",
+    "promo-discription": "[placeholder='Enter promo description']",
+    "select-target-item": "//div[@id='mui-component-select-targetItemId']",
+    "select-date": "input[type='date']",
+
+
+    "schedule": "[href='/schedule']",
+    "select-time":"[placeholder='Select start time']",
+    "select-end-time": "[placeholder='Select end time']",
+    "add-schedule-button": "//button[@type='button' and normalize-space(text())='New Schedule']",
+
+
+    "profile-picture": "//div[contains(@class,'MuiAvatar-root') and normalize-space()='H']",
+    "user-managment":"//li[contains(@class,'MuiMenuItem-root') and normalize-space()='User Management']",
+    "role-tab":"//button[@role='tab' and .//text()[normalize-space()='Roles']]",
+    "role-name":"[placeholder='Enter name']",
+    "user-tab": "//button[@role='tab' and .//text()[normalize-space()='Users']]",
+    "add-role-button":"//button[normalize-space()='Add Role']",
+    "select-all-role":"//label[.//text()[normalize-space()='Select all']]//input[@type='checkbox']",
+    "add-user-button": "//button[normalize-space()='Add User']",
+    "select-role-dropdown":"[placeholder='Enter role']",
+    "check-box": "[type='checkbox']",
+
+    "import-category-dropdown": "[placeholder='Select Categories']"
+
+
+    
+
+
+
+
+}

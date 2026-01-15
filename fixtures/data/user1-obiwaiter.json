@@ -1,0 +1,40 @@
+{
+    "login": {
+        "url": "https://develop.d20aue3nu6xt33.amplifyapp.com/venue",
+        "email": "hamna@test.com",
+        "password": "123456"
+    },
+    "signup": {
+        "firstname": "Hamna",
+        "lastname": "Noor",
+        "email": "hamna@test.com",
+        "company": "Ember",
+        "confirm-password": "123456"
+    },
+    "addvenue": {
+        "venue-name": "Ramp",
+        "venue-type": "Restaurant",
+        "venue-email": "hamna@test.com",
+        "venue-default-language": "English",
+        "venue-time-zone": "(UTC+05:00) Asia/Karachi",
+        "venue-currency": "Euro",
+        "venue-cuisine": "American",
+        "venue-address": "Restaurant no# 123, New York, USA",
+        "venue-description": "Farm-to-table cuisine with a rustic charm",
+        "facebook-link": "https://www.facebook.com/restaurant123",
+        "instagram-link": "https://www.instagram.com/restaurant123",
+        "client-app-url":"ramp",
+        "tip-percentage": "10",
+        "dine-in-tax": "5",
+        "takeaway-tax": "3",
+        "contact-number": "1234567890",
+        "venue-timing": ""        
+    },
+    "addmenu": {
+        "menu-name": "Menu 1",
+        "menu-type": "Main Menu",
+        "menu-description": "Menu 1 description",
+        "menu-image": "Menu 1 image",
+        "menu-items": "Menu 1 items"
+    }
+}
