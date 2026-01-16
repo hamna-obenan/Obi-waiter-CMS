@@ -4,7 +4,6 @@
 import { expect } from '@playwright/test';
 import data from '../fixtures/data/user1-obiwaiter.json' assert { type: "json" };
 import path from 'path';
-import { existsSync } from 'fs';
 export class addVenue {
     constructor(page) {
        this.page = page;
@@ -37,7 +36,8 @@ export class addVenue {
        this.contactnumber = "[placeholder='Enter contact number']"
        this.opentime = "[placeholder='Open Time']"; // open time input
        this.closetime = "[placeholder='Close Time']"; // close time input
-
+       this.storytitle = "[placeholder='Story Title']"; // story title input
+       this.storydescription = "[data-slate-node='element']"
        
        this.addvenueData = data.addvenue;
     }
@@ -85,9 +85,9 @@ export class addVenue {
         await this.page.locator(this.address).fill(this.addvenueData['venue-address']); //fill up the venue address box
         await expect(this.page.locator(this.address)).toHaveValue(this.addvenueData['venue-address']); //(Assertion) verify the venue address is filled
 
-    }
-     //step 2: details and branding
-     async detailsandbranding(){
+      }
+       //step 2: details and branding
+      async detailsandbranding(){
         await this.page.locator(this.description).click(); //click on the venue description box
         await this.page.locator(this.description).fill(this.addvenueData['venue-description']); //fill up the venue description box
         await expect(this.page.locator(this.description)).toHaveValue(this.addvenueData['venue-description']); //(Assertion) verify the venue description is filled
@@ -122,11 +122,12 @@ export class addVenue {
         await this.page.locator(this.takeawayTax).fill(this.addvenueData['takeaway-tax']); //fill up the take away tax text box
         await expect(this.page.locator(this.takeawayTax)).toHaveValue(this.addvenueData['takeaway-tax']); //(Assertion) verify the take away tax is filled
       //   await this.page.pause();
-     }
+      }
      
-   //step 3: upload images logo and cover image
-   async uploadimages(fileName, imageType) {
-      if(imageType === 'logo'){
+    //step 3: upload images logo and cover image
+    //optional feild in the venue
+    async uploadimages(fileName, imageType) {
+       if(imageType === 'logo'){
 
          await this.page.locator(this.picturbox).nth(0).click();
          const fileInput = this.page.locator('input[id="fileInput"]').first();
@@ -140,7 +141,7 @@ export class addVenue {
          await this.page.waitForTimeout(3000);
          await this.page.locator(this.upload).click();
 
-      } else if(imageType === 'coverimage'){
+       } else if(imageType === 'coverimage'){
          
          await this.page.locator(this.picturbox).nth(1).click();
      
@@ -149,14 +150,27 @@ export class addVenue {
         
          const filePath = path.resolve(__dirname, `../fixtures/pictures/${fileName}`);
          await fileInput.setInputFiles(filePath);
+         const imageBar1 = this.page.locator(this.selectimage);
+         await expect(imageBar1).toBeVisible({timeout: 3000});
+         await this.page.waitForTimeout(3000);
          await this.page.locator(this.upload).click();
-         await this.page.locator(this.upload).waitFor({ state: 'hidden', timeout: 60000});
-         // await expect(this.page.locator(this.upload)).toBeVisible();
          
-      }else{
+       }else if(imageType === 'storyimage'){
+         await this.page.locator(this.picturbox).click();
+         const fileInput = this.page.locator('input[id="fileInput"]').first();
+         await fileInput.waitFor({ state: 'attached' });
+         const filePath = path.resolve(__dirname, `../fixtures/pictures/${fileName}`);
+         await fileInput.setInputFiles(filePath);
+         const imageBar2 = this.page.locator(this.selectimage);
+         await expect(imageBar2).toBeVisible({timeout: 3000});
+         await this.page.waitForTimeout(3000);
+         await this.page.locator(this.upload).click();
+
+       }
+       else{
          throw new Error(`Invalid image type: ${imageType}`);
+       }
       }
-    }
 
     async storyandExperience()  {
       await this.page.locator(this.contactnumber).click(); //click on the story title box
@@ -164,6 +178,100 @@ export class addVenue {
       await expect(this.page.locator(this.contactnumber)).toHaveValue(this.addvenueData['contact-number']); //Assertion to verify the phone number value
 
     }
+
+    //step 4: venue timing
+    //optional feild in the venue
+    async venueTiming() {
+      //add time for the monday
+      await this.page.locator(this.opentime).nth(0).click(); //click on the open time input
+      await this.page.locator(this.opentime).nth(0).fill(this.addvenueData['venue-timing']['monday']['open-time']); //fill up the open time input
+      await expect(this.page.locator(this.opentime).nth(0)).toHaveValue(this.addvenueData['venue-timing']['monday']['open-time']); //Assertion to verify the open time input value
+
+      //close time for the monday
+      await this.page.locator(this.closetime).nth(0).click(); //click on the close time input
+      await this.page.locator(this.closetime).nth(0).fill(this.addvenueData['venue-timing']['monday']['close-time']); //fill up the close time input
+      await expect(this.page.locator(this.closetime).nth(0)).toHaveValue(this.addvenueData['venue-timing']['monday']['close-time']); //Assertion to verify the close time input value
+
+      //add time for the tuesday
+      //add opening time for tuesday
+      await this.page.locator(this.opentime).nth(1).click(); //click on the open time input
+      await this.page.locator(this.opentime).nth(1).fill(this.addvenueData['venue-timing']['tuesday']['open-time']); //fill up the open time input
+      await expect(this.page.locator(this.opentime).nth(1)).toHaveValue(this.addvenueData['venue-timing']['tuesday']['open-time']); //Assertion to verify the open time input value
+
+      //add closing time for tuesday
+      await this.page.locator(this.closetime).nth(1).click(); //click on the close time input
+      await this.page.locator(this.closetime).nth(1).fill(this.addvenueData['venue-timing']['tuesday']['close-time']); //fill up the close time input
+      await expect(this.page.locator(this.closetime).nth(1)).toHaveValue(this.addvenueData['venue-timing']['tuesday']['close-time']); //Assertion to verify the close time input value
+
+      //add time for the wednesday
+      //add opening time for wednesday
+      await this.page.locator(this.opentime).nth(2).click(); //click on the open time input
+      await this.page.locator(this.opentime).nth(2).fill(this.addvenueData['venue-timing']['wednesday']['open-time']); //fill up the open time input
+      await expect(this.page.locator(this.opentime).nth(2)).toHaveValue(this.addvenueData['venue-timing']['wednesday']['open-time']); //Assertion to verify the open time input value
+
+      //add closing time for wednesday
+      await this.page.locator(this.closetime).nth(2).click(); //click on the close time input
+      await this.page.locator(this.closetime).nth(2).fill(this.addvenueData['venue-timing']['wednesday']['close-time']); //fill up the close time input
+      await expect(this.page.locator(this.closetime).nth(2)).toHaveValue(this.addvenueData['venue-timing']['wednesday']['close-time']); //Assertion to verify the close time input value
+
+      //add time for the thursday
+      //add opening time for thursday
+      await this.page.locator(this.opentime).nth(3).click(); //click on the open time input
+      await this.page.locator(this.opentime).nth(3).fill(this.addvenueData['venue-timing']['thursday']['open-time']); //fill up the open time input
+      await expect(this.page.locator(this.opentime).nth(3)).toHaveValue(this.addvenueData['venue-timing']['thursday']['open-time']); //Assertion to verify the open time input value
+
+      //add closing time for thursday
+      await this.page.locator(this.closetime).nth(3).click(); //click on the close time input
+      await this.page.locator(this.closetime).nth(3).fill(this.addvenueData['venue-timing']['thursday']['close-time']); //fill up the close time input
+      await expect(this.page.locator(this.closetime).nth(3)).toHaveValue(this.addvenueData['venue-timing']['thursday']['close-time']); //Assertion to verify the close time input value
+
+      //add time for the friday
+      //add opening time for friday
+      await this.page.locator(this.opentime).nth(4).click(); //click on the open time input
+      await this.page.locator(this.opentime).nth(4).fill(this.addvenueData['venue-timing']['friday']['open-time']); //fill up the open time input
+      await expect(this.page.locator(this.opentime).nth(4)).toHaveValue(this.addvenueData['venue-timing']['friday']['open-time']); //Assertion to verify the open time input value
+
+      //add closing time for friday
+      await this.page.locator(this.closetime).nth(4).click(); //click on the close time input
+      await this.page.locator(this.closetime).nth(4).fill(this.addvenueData['venue-timing']['friday']['close-time']); //fill up the close time input
+      await expect(this.page.locator(this.closetime).nth(4)).toHaveValue(this.addvenueData['venue-timing']['friday']['close-time']); //Assertion to verify the close time input value
+
+      //add time for the saturday
+      //add opening time for saturday
+      await this.page.locator(this.opentime).nth(5).click(); //click on the open time input
+      await this.page.locator(this.opentime).nth(5).fill(this.addvenueData['venue-timing']['saturday']['open-time']); //fill up the open time input
+      await expect(this.page.locator(this.opentime).nth(5)).toHaveValue(this.addvenueData['venue-timing']['saturday']['open-time']); //Assertion to verify the open time input value
+
+      //add closing time for saturday
+      await this.page.locator(this.closetime).nth(5).click(); //click on the close time input
+      await this.page.locator(this.closetime).nth(5).fill(this.addvenueData['venue-timing']['saturday']['close-time']); //fill up the close time input
+      await expect(this.page.locator(this.closetime).nth(5)).toHaveValue(this.addvenueData['venue-timing']['saturday']['close-time']); //Assertion to verify the close time input value
+
+      //add time for the sunday
+      //add opening time for sunday
+      await this.page.locator(this.opentime).nth(6).click(); //click on the open time input
+      await this.page.locator(this.opentime).nth(6).fill(this.addvenueData['venue-timing']['sunday']['open-time']); //fill up the open time input
+      await expect(this.page.locator(this.opentime).nth(6)).toHaveValue(this.addvenueData['venue-timing']['sunday']['open-time']); //Assertion to verify the open time input value
+
+      //add closing time for sunday
+      await this.page.locator(this.closetime).nth(6).click(); //click on the close time input
+      await this.page.locator(this.closetime).nth(6).fill(this.addvenueData['venue-timing']['sunday']['close-time']); //fill up the close time input
+      await expect(this.page.locator(this.closetime).nth(6)).toHaveValue(this.addvenueData['venue-timing']['sunday']['close-time']); //Assertion to verify the close time input value
+    }
+    async story() {
+      await this.page.locator(this.storytitle).click(); //click on the story title 
+      await this.page.locator(this.storytitle).fill(this.addvenueData['story-title']); //fill up the story title
+      await expect(this.page.locator(this.storytitle)).toHaveValue(this.addvenueData['story-title']); //Assertion to verify the story title input value
+
+      await this.page.locator(this.storydescription).click(); //click on the story description
+      await this.page.locator(this.storydescription).fill(this.addvenueData['story-description']); //fill up the story description
+      await expect(this.page.locator(this.storydescription)).toHaveText(this.addvenueData['story-description']); //Assertion to verify the story description input value
+      //uploading 
+      // await this.page.pause(); //pause the test to see the result
+
+    }
+         
+
    
 
     
