@@ -37,7 +37,10 @@ export class addVenue {
        this.opentime = "[placeholder='Open Time']"; // open time input
        this.closetime = "[placeholder='Close Time']"; // close time input
        this.storytitle = "[placeholder='Story Title']"; // story title input
-       this.storydescription = "[data-slate-node='element']"
+       this.storydescription = "[data-slate-node='element']"; // story description input
+       this.addgalarybutton = "//button[@type='button' and normalize-space(text())='Add Gallery Item']"; // button locator to add gallery items
+       this.gallerytitle = "[placeholder='Gallery Title']"; //gallery title input
+       this.gallerydescription = "[placeholder='Gallery Description']"; //gallery description input
        
        this.addvenueData = data.addvenue;
     }
@@ -91,11 +94,13 @@ export class addVenue {
         await this.page.locator(this.description).click(); //click on the venue description box
         await this.page.locator(this.description).fill(this.addvenueData['venue-description']); //fill up the venue description box
         await expect(this.page.locator(this.description)).toHaveValue(this.addvenueData['venue-description']); //(Assertion) verify the venue description is filled
-
+        
+        await this.page.waitForTimeout(2000);
         await this.page.locator(this.facebook).click(); //click on the venue facebook box
         await this.page.locator(this.facebook).fill(this.addvenueData['facebook-link']); //fill up the venue facebook box
         await expect(this.page.locator(this.facebook)).toHaveValue(this.addvenueData['facebook-link']); //(Assertion) verify the venue facebook link is filled
 
+        await this.page.waitForTimeout(2000);
         await this.page.locator(this.instagram).click(); //click on the venue instagram box
         await this.page.locator(this.instagram).fill(this.addvenueData['instagram-link']); //fill up the venue instagram box
         await expect(this.page.locator(this.instagram)).toHaveValue(this.addvenueData['instagram-link']); //(Assertion) verify the venue instagram link is filled
@@ -129,47 +134,101 @@ export class addVenue {
     async uploadimages(fileName, imageType) {
        if(imageType === 'logo'){
 
-         await this.page.locator(this.picturbox).nth(0).click();
-         const fileInput = this.page.locator('input[id="fileInput"]').first();
-         await fileInput.waitFor({ state: 'attached' });
-        
-         const filePath = path.resolve(__dirname, `../fixtures/pictures/${fileName}`);
-         
-         await fileInput.setInputFiles(filePath);
-         const imageBar = this.page.locator(this.selectimage);
-         await expect(imageBar).toBeVisible({timeout: 3000});
-         await this.page.waitForTimeout(3000);
-         await this.page.locator(this.upload).click();
+         await this.page.locator(this.picturbox).nth(0).click(); //click on the picture box
+         const fileInput = this.page.locator('input[id="fileInput"]').first(); //select the image using locator
+         await fileInput.waitFor({ state: 'attached' }); //wait for the image to be attached
+
+         const filePath = path.resolve(__dirname, `../fixtures/pictures/${fileName}`); //select the image using Path
+         await fileInput.setInputFiles(filePath); //set the image using file input
+
+         const imageBar = this.page.locator(this.selectimage); //select the image using locator
+         await expect(imageBar).toBeVisible({timeout: 3000}); //verify the image is visible
+         await this.page.waitForTimeout(3000); //wait for 3 seconds
+
+         await this.page.locator(this.upload).click(); //click on the upload button
 
        } else if(imageType === 'coverimage'){
          
-         await this.page.locator(this.picturbox).nth(1).click();
+         await this.page.locator(this.picturbox).nth(1).click(); //click on the picture box
      
-         const fileInput = this.page.locator('input[id="fileInput"]').first();
-         await fileInput.waitFor({ state: 'attached' });
+         const fileInput = this.page.locator('input[id="fileInput"]').first(); //select the image using locator
+         await fileInput.waitFor({ state: 'attached' }); //wait for the image to be attached
         
-         const filePath = path.resolve(__dirname, `../fixtures/pictures/${fileName}`);
-         await fileInput.setInputFiles(filePath);
-         const imageBar1 = this.page.locator(this.selectimage);
-         await expect(imageBar1).toBeVisible({timeout: 3000});
-         await this.page.waitForTimeout(3000);
-         await this.page.locator(this.upload).click();
+         const filePath = path.resolve(__dirname, `../fixtures/pictures/${fileName}`); //select the image using Path
+         await fileInput.setInputFiles(filePath); //set the image using file input
+
+         const imageBar1 = this.page.locator(this.selectimage); //select the image using locator
+         await expect(imageBar1).toBeVisible({timeout: 3000}); //verify the image is visible
+         await this.page.waitForTimeout(3000); //wait for 3 seconds
+
+         await this.page.locator(this.upload).click(); //click on the upload button
          
        }else if(imageType === 'storyimage'){
-         await this.page.locator(this.picturbox).click();
-         const fileInput = this.page.locator('input[id="fileInput"]').first();
-         await fileInput.waitFor({ state: 'attached' });
-         const filePath = path.resolve(__dirname, `../fixtures/pictures/${fileName}`);
-         await fileInput.setInputFiles(filePath);
-         const imageBar2 = this.page.locator(this.selectimage);
-         await expect(imageBar2).toBeVisible({timeout: 3000});
-         await this.page.waitForTimeout(3000);
-         await this.page.locator(this.upload).click();
+         await this.page.locator(this.picturbox).click(); //click on the picture box
+         const fileInput = this.page.locator('input[id="fileInput"]').first(); //select the image using locator
+         await fileInput.waitFor({ state: 'attached' }); //wait for the image to be attached
 
-       }
-       else{
-         throw new Error(`Invalid image type: ${imageType}`);
-       }
+         const filePath = path.resolve(__dirname, `../fixtures/pictures/${fileName}`); //select the image using Path
+         await fileInput.setInputFiles(filePath); //set the image using file input
+         
+         const imageBar2 = this.page.locator(this.selectimage); //select the image using locator
+         await expect(imageBar2).toBeVisible({timeout: 3000}); //verify the image is visible
+         await this.page.waitForTimeout(3000); //wait for 3 seconds
+
+         await this.page.locator(this.upload).click(); //click on the upload button
+
+       }else if(imageType === 'galleryimage'){
+         //gallery image 1
+         await this.page.locator(this.picturbox).nth(0).click(); //click on the picture box
+         const fileInput = this.page.locator('input[id="fileInput"]'); //select the image using locator
+         await fileInput.waitFor({ state: 'attached' }); //wait for the image to be attached
+
+         const filePath = path.resolve(__dirname, `../fixtures/pictures/${fileName}`); //select the image using Path
+
+         await fileInput.setInputFiles(filePath); //set the image using file input
+         const galleryimageBar1 = this.page.locator(this.selectimage); //select the image using locator
+
+         await expect(galleryimageBar1).toBeVisible({state: 'visible', timeout: 6000}); //verify the image is visible
+        //  await this.page.waitForTimeout(6000); //wait for 6 seconds
+
+         await this.page.locator(this.upload).click(); //click on the upload button
+        //  await this.page.locator(this.upload).waitFor({ state: 'hidden', timeout: 6000 }); //wait for the upload button to be hidden
+
+        }else if(imageType === 'galleryimage2'){
+         //gallery image 2
+         await this.page.locator(this.picturbox).nth(1).click(); //click on the picture box
+         const fileInput = this.page.locator('input[id="fileInput"]'); //select the image using locator
+         await fileInput.waitFor({ state: 'attached' }); //wait for the image to be attached
+
+         const filePath = path.resolve(__dirname, `../fixtures/pictures/${fileName}`); //select the image using Path
+
+         await fileInput.setInputFiles(filePath); //set the image using file input
+         const galleryimageBar2 = this.page.locator(this.selectimage); //select the image using locator
+
+         await expect(galleryimageBar2).toBeVisible({state: 'visible', timeout: 6000}); //verify the image is visible
+        //  await this.page.waitForTimeout(6000); //wait for 6 seconds
+
+         await this.page.locator(this.upload).click(); //click on the upload button
+        //  await this.page.locator(this.upload).waitFor({ state: 'hidden', timeout: 6000 }); //wait for the upload button to be hidden
+
+        }else if(imageType === 'galleryimage3'){
+          await this.page.locator(this.picturbox).nth(2).click(); //click on the picture box
+          const fileInput = this.page.locator('input[id="fileInput"]'); //select the image using locator
+          await fileInput.waitFor({ state: 'attached' }); //wait for the image to be attached
+ 
+          const filePath = path.resolve(__dirname, `../fixtures/pictures/${fileName}`); //select the image using Path
+ 
+          await fileInput.setInputFiles(filePath); //set the image using file input
+          const galleryimageBar3 = this.page.locator(this.selectimage); //select the image using locator
+ 
+          await expect(galleryimageBar3).toBeVisible({state: 'visible', timeout: 6000}); //verify the image is visible
+          // await this.page.waitForTimeout(6000); //wait for 6 seconds
+ 
+          await this.page.locator(this.upload).click(setTimeout(6000)); //click on the upload button
+          await this.page.locator(this.upload).waitFor({ state: 'hidden' }); //wait for the upload button to be hidden
+        }else{
+         throw new Error(`Invalid image type: ${imageType}`); //throw an error if the image type is invalid
+        }
       }
 
     async storyandExperience()  {
@@ -266,9 +325,31 @@ export class addVenue {
       await this.page.locator(this.storydescription).click(); //click on the story description
       await this.page.locator(this.storydescription).fill(this.addvenueData['story-description']); //fill up the story description
       await expect(this.page.locator(this.storydescription)).toHaveText(this.addvenueData['story-description']); //Assertion to verify the story description input value
-      //uploading 
-      // await this.page.pause(); //pause the test to see the result
 
+    }
+    async addgalaryitems() {
+      // add the first gallery item
+      await this.page.locator(this.addgalarybutton).click(); //click on the add gallery button
+      await this.page.locator(this.gallerytitle).nth(0).click(); //click on the gallery title input
+      await this.page.locator(this.gallerytitle).nth(0).fill(this.addvenueData['gallery-title-1']); //fill up the gallery title
+      await this.page.locator(this.gallerydescription).nth(0).fill(this.addvenueData['gallery-description-1']); //fill up the gallery description
+      await this.uploadimages('gallery1.png', 'galleryimage'); //upload the gallery image
+
+     // click on the add gallery button to add the second gallery item
+      await this.page.locator(this.addgalarybutton).click(); //click on the add gallery button
+      await this.page.locator(this.gallerytitle).nth(1).click(); //click on the gallery title input   
+      await this.page.locator(this.gallerytitle).nth(1).fill(this.addvenueData['gallery-title-2']); //fill up the gallery title
+      await this.page.locator(this.gallerydescription).nth(1).fill(this.addvenueData['gallery-description-2']); //fill up the gallery description
+      await this.uploadimages('gallery2.png', 'galleryimage'); //upload the gallery image
+
+
+      // click on the add gallery button to add the third gallery item
+      await this.page.locator(this.addgalarybutton).click(); //click on the add gallery button
+      await this.page.locator(this.gallerytitle).nth(2).click(); //click on the gallery title input
+      await this.page.locator(this.gallerytitle).nth(2).fill(this.addvenueData['gallery-title-3']); //fill up the gallery title
+      await this.page.locator(this.gallerydescription).nth(2).fill(this.addvenueData['gallery-description-3']); //fill up the gallery description
+      await this.uploadimages('gallery3.png', 'galleryimage'); //upload the gallery image
+      await this.page.locator(this.contactnumber).click(); //click on the contact number input
     }
          
 

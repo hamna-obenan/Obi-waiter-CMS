@@ -8,12 +8,14 @@ import { addVenue, signupPage } from '../../object-page/index';
 test('create the venue at the company level', async ({ page }) => {
     const addVenueClass = new addVenue(page);
     const signupPageClass = new signupPage(page);
-    const logoImageName = 'logo.jpeg';
-    const imageType = 'logo';
-    const coverimageName = 'cover.png';
-    const coverimageType = 'coverimage';
+    const logoImageName = 'logo.jpeg'; //image name for logo section
+    const imageType = 'logo'; //image type for logo section
+    const coverimageName = 'cover.png'; //image name for cover image section
+    const coverimageType = 'coverimage'; //image type for cover image section
     const storyimageName = 'cover.png'; //in story section add the same image in cover image section
-    const storyimagetype = 'storyimage';
+    const storyimagetype = 'storyimage'; //image type for story section
+    const galleryimageName = 'gallery1.png'; //image name for gallery section
+    const galleryimageType = 'galleryimage'; //image type for gallery section
 
     await signupPageClass.goto(); // go to the URL
 
@@ -45,5 +47,8 @@ test('create the venue at the company level', async ({ page }) => {
     await addVenueClass.story(); // fill up the story of the venue
 
     await addVenueClass.uploadimages(storyimageName,storyimagetype); //upload images story and experience of the venue
+    await page.pause();
 
+    await addVenueClass.addgalaryitems(); // add the gallery items of the venue
+    
 });

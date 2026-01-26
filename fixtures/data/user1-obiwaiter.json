@@ -58,11 +58,16 @@
                 "close-time": "18:00"
             }
         },
-       
         "story-title": "Our Story",
-        "story-description": "Ramp Story description"
-
+        "story-description": "Ramp Story description",
+        "gallery-title-1": "Gallery Item 1",
+        "gallery-description-1": "Gallery Item 1 description",
+        "gallery-title-2": "Gallery Item 2",
+        "gallery-description-2": "Gallery Item 2 description",
+        "gallery-title-3": "Gallery Item 3",
+        "gallery-description-3": "Gallery Item 3 description"
     },
+   
     "addmenu": {
         "menu-name": "Menu 1",
         "menu-type": "Main Menu",
