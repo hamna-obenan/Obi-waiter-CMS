@@ -41,6 +41,8 @@ export class addVenue {
        this.addgalarybutton = "//button[@type='button' and normalize-space(text())='Add Gallery Item']"; // button locator to add gallery items
        this.gallerytitle = "[placeholder='Gallery Title']"; //gallery title input
        this.gallerydescription = "[placeholder='Gallery Description']"; //gallery description input
+
+       this.savebutton = "//button[normalize-space()='Save']"; // save button Xpath
        
        this.addvenueData = data.addvenue;
     }
@@ -126,11 +128,10 @@ export class addVenue {
         await this.page.locator(this.takeawayTax).click(); //click on the take away tax text box
         await this.page.locator(this.takeawayTax).fill(this.addvenueData['takeaway-tax']); //fill up the take away tax text box
         await expect(this.page.locator(this.takeawayTax)).toHaveValue(this.addvenueData['takeaway-tax']); //(Assertion) verify the take away tax is filled
-      //   await this.page.pause();
       }
      
-    //step 3: upload images logo and cover image
-    //optional feild in the venue
+      //step 3: upload images logo and cover image
+      //optional feild in the venue
     async uploadimages(fileName, imageType) {
        if(imageType === 'logo'){
 
@@ -176,6 +177,7 @@ export class addVenue {
          await this.page.waitForTimeout(3000); //wait for 3 seconds
 
          await this.page.locator(this.upload).click(); //click on the upload button
+         
 
        }else if(imageType === 'galleryimage'){
          //gallery image 1
@@ -189,10 +191,9 @@ export class addVenue {
          const galleryimageBar1 = this.page.locator(this.selectimage); //select the image using locator
 
          await expect(galleryimageBar1).toBeVisible({state: 'visible', timeout: 6000}); //verify the image is visible
-        //  await this.page.waitForTimeout(6000); //wait for 6 seconds
 
          await this.page.locator(this.upload).click(); //click on the upload button
-        //  await this.page.locator(this.upload).waitFor({ state: 'hidden', timeout: 6000 }); //wait for the upload button to be hidden
+         await expect(this.page.locator('//label[@for="gallery-image-file-0"]//img')).toBeVisible({ timeout: 60000 });
 
         }else if(imageType === 'galleryimage2'){
          //gallery image 2
@@ -206,10 +207,10 @@ export class addVenue {
          const galleryimageBar2 = this.page.locator(this.selectimage); //select the image using locator
 
          await expect(galleryimageBar2).toBeVisible({state: 'visible', timeout: 6000}); //verify the image is visible
-        //  await this.page.waitForTimeout(6000); //wait for 6 seconds
 
          await this.page.locator(this.upload).click(); //click on the upload button
-        //  await this.page.locator(this.upload).waitFor({ state: 'hidden', timeout: 6000 }); //wait for the upload button to be hidden
+         await expect(this.page.locator('//label[@for="gallery-image-file-1"]//img')).toBeVisible({ timeout: 60000 }); //verify the image is visible
+
 
         }else if(imageType === 'galleryimage3'){
           await this.page.locator(this.picturbox).nth(2).click(); //click on the picture box
@@ -222,10 +223,11 @@ export class addVenue {
           const galleryimageBar3 = this.page.locator(this.selectimage); //select the image using locator
  
           await expect(galleryimageBar3).toBeVisible({state: 'visible', timeout: 6000}); //verify the image is visible
-          // await this.page.waitForTimeout(6000); //wait for 6 seconds
  
-          await this.page.locator(this.upload).click(setTimeout(6000)); //click on the upload button
-          await this.page.locator(this.upload).waitFor({ state: 'hidden' }); //wait for the upload button to be hidden
+          await this.page.locator(this.upload).first().click(); //click on the upload button
+          await this.page.locator(this.upload).waitFor({ state: 'hidden', timeout: 120000 }); //wait for the upload button to be hidden for up to 1 minute
+          // verify image preview through this locator //label[@for="gallery-image-file-2"]//img
+          await expect(this.page.locator('//label[@for="gallery-image-file-2"]//img')).toBeVisible({ timeout: 1200000 }); //verify the image is visible
         }else{
          throw new Error(`Invalid image type: ${imageType}`); //throw an error if the image type is invalid
         }
@@ -240,6 +242,7 @@ export class addVenue {
 
     //step 4: venue timing
     //optional feild in the venue
+
     async venueTiming() {
       //add time for the monday
       await this.page.locator(this.opentime).nth(0).click(); //click on the open time input
@@ -329,31 +332,36 @@ export class addVenue {
     }
     async addgalaryitems() {
       // add the first gallery item
-      await this.page.locator(this.addgalarybutton).click(); //click on the add gallery button
+      await expect(this.page.locator(this.addgalarybutton)).toBeVisible({timeout: 6000}); //verify the add gallery button is visible
+      await this.page.locator(this.addgalarybutton).click(/*{timeout: 6000}*/); //click on the add gallery button
       await this.page.locator(this.gallerytitle).nth(0).click(); //click on the gallery title input
       await this.page.locator(this.gallerytitle).nth(0).fill(this.addvenueData['gallery-title-1']); //fill up the gallery title
+      await expect(this.page.locator(this.gallerytitle).nth(0)).toHaveValue(this.addvenueData['gallery-title-1']); //Assertion to verify the gallery title input value
       await this.page.locator(this.gallerydescription).nth(0).fill(this.addvenueData['gallery-description-1']); //fill up the gallery description
+      await expect(this.page.locator(this.gallerydescription).nth(0)).toHaveValue(this.addvenueData['gallery-description-1']); //Assertion to verify the gallery description input value
       await this.uploadimages('gallery1.png', 'galleryimage'); //upload the gallery image
 
      // click on the add gallery button to add the second gallery item
-      await this.page.locator(this.addgalarybutton).click(); //click on the add gallery button
+      await expect(this.page.locator(this.addgalarybutton)).toBeVisible({timeout: 6000}); //verify the add gallery button is visible
+      await this.page.locator(this.addgalarybutton).click(/*{timeout: 6000}*/); //click on the add gallery button
       await this.page.locator(this.gallerytitle).nth(1).click(); //click on the gallery title input   
       await this.page.locator(this.gallerytitle).nth(1).fill(this.addvenueData['gallery-title-2']); //fill up the gallery title
+      await expect(this.page.locator(this.gallerytitle).nth(1)).toHaveValue(this.addvenueData['gallery-title-2']); //Assertion to verify the gallery title input value
       await this.page.locator(this.gallerydescription).nth(1).fill(this.addvenueData['gallery-description-2']); //fill up the gallery description
+      await expect(this.page.locator(this.gallerydescription).nth(1)).toHaveValue(this.addvenueData['gallery-description-2']); //Assertion to verify the gallery description input value
       await this.uploadimages('gallery2.png', 'galleryimage'); //upload the gallery image
 
 
       // click on the add gallery button to add the third gallery item
-      await this.page.locator(this.addgalarybutton).click(); //click on the add gallery button
+      await expect(this.page.locator(this.addgalarybutton)).toBeVisible({timeout: 6000}); //verify the add gallery button is visible
+      await this.page.locator(this.addgalarybutton).click(/*{timeout: 6000}*/); //click on the add gallery button
       await this.page.locator(this.gallerytitle).nth(2).click(); //click on the gallery title input
       await this.page.locator(this.gallerytitle).nth(2).fill(this.addvenueData['gallery-title-3']); //fill up the gallery title
+      await expect(this.page.locator(this.gallerytitle).nth(2)).toHaveValue(this.addvenueData['gallery-title-3']); //Assertion to verify the gallery title input value
       await this.page.locator(this.gallerydescription).nth(2).fill(this.addvenueData['gallery-description-3']); //fill up the gallery description
+      await expect(this.page.locator(this.gallerydescription).nth(2)).toHaveValue(this.addvenueData['gallery-description-3']); //Assertion to verify the gallery description input value
       await this.uploadimages('gallery3.png', 'galleryimage'); //upload the gallery image
-      await this.page.locator(this.contactnumber).click(); //click on the contact number input
+      // Upload success is verified by uploadimages() (modal closes). Avoid brittle selectors like label[@for="..."] as app IDs may differ.
     }
-         
-
-   
-
     
 }

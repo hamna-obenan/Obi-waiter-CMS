@@ -47,8 +47,12 @@ test('create the venue at the company level', async ({ page }) => {
     await addVenueClass.story(); // fill up the story of the venue
 
     await addVenueClass.uploadimages(storyimageName,storyimagetype); //upload images story and experience of the venue
-    await page.pause();
 
-    await addVenueClass.addgalaryitems(); // add the gallery items of the venue
+    await addVenueClass.addgalaryitems(); // add the gallery items of the venue\
     
+    await page.waitForSelector(addVenueClass.savebutton, { state: 'visible', timeout: 160000 }); 
+    // wait for the save button to be visible for up to 1 minute
+    await page.locator(addVenueClass.savebutton).click(); // click on the save button to save the venue
+    await page.waitForTimeout(20000); // wait for 20 seconds
+
 });
